@@ -1,3 +1,27 @@
+# Code Composer Studio & Eclipse specific
+#
+# Build artifacts and output directories
+Debug/
+Release/
+
+# Target configuration files
+targetConfigs/
+
+# User-specific settings and launch configurations
+.settings/
+.launches/
+*.launch
+*.user
+*.configspec
+
+# TI-RTOS specific files (good to have for future projects)
+src/
+.config/
+.xdchelp
+
+
+# General C/C++ files & temporary files
+#
 # Prerequisites
 *.d
 
@@ -35,6 +59,10 @@
 *.i*86
 *.x86_64
 *.hex
+
+# Log and temporary files
+*.log
+*.tmp
 
 # Debug files
 *.dSYM/
