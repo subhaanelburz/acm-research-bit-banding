@@ -11,9 +11,6 @@
  *  The colors are as followed: 2 = RED , 4 = BLUE , 8 = GREEN
  */
 
-// Calculating the bit-banded address for the pin corresponding to the on-board red LED
-#define RED_LED_APB (*((volatile uint32_t *)(0x42000000 + (0x400253FC-0x40000000)*32 + 1*4))) //PF1
-
 int main(void)
 {
     initSystemClockTo40Mhz(); // Enable system clock
@@ -49,14 +46,14 @@ int main(void)
     GPIO_PORTF_DIR_R |= 0x0E;   // enable PF1, PF2, and PF3 as outputs
     GPIO_PORTF_DEN_R |= 0x0E;   // enable PF1, PF2, and PF3 digital functions
 
-    RED_LED_APB = 0; // initially turn red LED off
+    GPIO_PORTF_DATA_R &= ~0x02; // initially turn red LED off
 
     start_ticks = NVIC_ST_CURRENT_R; // start the timer
 
     for(i = 0; i < 1000000; i++)
     {
-        RED_LED_APB = 1; // set the bit
-        RED_LED_APB = 0; // clear the bit
+        GPIO_PORTF_DATA_R |= 0x02; // set the bit
+        GPIO_PORTF_DATA_R &= ~0x02; // clear the bit
     }
 
     end_ticks = NVIC_ST_CURRENT_R; // end the timer
@@ -67,7 +64,7 @@ int main(void)
 
     for(i = 0; i < 1000000; i++)
     {
-        RED_LED_APB = 1; // set the bit
+        GPIO_PORTF_DATA_R |= 0x02; // set the bit
     }
 
     end_ticks = NVIC_ST_CURRENT_R; // end the timer
@@ -78,7 +75,7 @@ int main(void)
 
     for(i = 0; i < 1000000; i++)
     {
-        RED_LED_APB = 0; // clear the bit
+        GPIO_PORTF_DATA_R &= ~0x02; // clear the bit
     }
 
     end_ticks = NVIC_ST_CURRENT_R; // end the timer

@@ -44,6 +44,8 @@ int main(void)
     GPIO_PORTF_DIR_R |= 0x0E;   // enable PF1, PF2, and PF3 as outputs
     GPIO_PORTF_DEN_R |= 0x0E;   // enable PF1, PF2, and PF3 digital functions
 
+    GPIO_PORTF_DATA_R &= ~0x02; // initially turn red LED off
+
     start_ticks = NVIC_ST_CURRENT_R; // start the timer
 
     for(i = 0; i < 1000000; i++)
