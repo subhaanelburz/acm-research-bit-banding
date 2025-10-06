@@ -14,6 +14,9 @@ targetConfigs/
 *.user
 *.configspec
 
+# Ignore the workspace-level project file in the root directory
+/.project
+
 # TI-RTOS specific files (good to have for future projects)
 src/
 .config/
