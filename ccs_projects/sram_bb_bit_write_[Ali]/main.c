@@ -46,7 +46,7 @@ int main(void)
     volatile uint32_t* bb_address = (volatile uint32_t*) base_bb_address;
 
 
-    for(i = 0; i < 10000; i++)
+    for(i = 0; i < 100000; i++)
     {
 
         *bb_address = i & 1;
